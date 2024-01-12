@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 // the key to .astro portable text extensions working in astro-portabletext,
 // is to declare their array locally, thus also in a .astro file.
-const ptComponents = {
+const extraPtComponents = {
   type: {
     image: ptImage,
     // any other .astro extensions
@@ -48,9 +48,8 @@ const post = await getPost(slug);
       <p class="post__date">
         {formatDate(post._createdAt)}
       </p>
-      <h2>Here we have the PT w/image extension</h2>
       <div class="post__content">
-        <PortableText value={post.body} components={ptComponents} />
+        <PortableText value={post.body} components={extraPtComponents} />
       </div>
     </div>
   </section>
