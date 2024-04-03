@@ -43,7 +43,8 @@ const post = await getPost(slug);
   </section>
 </Layout>
 
-<style>
+  <!--<style>-->
+  <style is:inline>
   .post {
     width: 100%;
     margin: var(--space-1) 0 var(--space-4);
@@ -68,7 +69,7 @@ const post = await getPost(slug);
       font-weight: 400;
       font-size: var(--font-size-4);
       line-height: var(--line-height-5);
-      letter-spacing: -0.02em;
+      /*letter-spacing: -0.02em;  this breaks on Firefox */
       margin-top: var(--space-6);
 
       /* *todo* with the ampersand nesting,, does not work */
@@ -108,6 +109,13 @@ const post = await getPost(slug);
       line-height: var(--line-height-1);
       margin-top: var(--space-4);
     }
+
+    & .pt__embed_image {
+      display: block; /* crucial for auto margins in media queries below */
+      width: 400px;
+      float: right;
+      margin: 10px;
+    }
   }
 
   @media (min-width: 800px) {
@@ -140,6 +148,27 @@ const post = await getPost(slug);
 
       & .post__content {
         margin-top: var(--space-7);
+      }
+
+    }
+  }
+
+  @media (max-width: 640px) {
+    .post {
+      & .pt__embed_image {
+        float: none;
+        width: 400px;
+        margin: 5% auto;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .post {
+      & .pt__embed_image {
+        width: 90%;
+        margin: 5%;
+        float: none;
       }
     }
   }
